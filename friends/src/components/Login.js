@@ -20,10 +20,13 @@ class Login extends React.Component {
 
   onLogin = e => {
     e.preventDefault();
+    // console.log(this.state.credentials);
     axiosWithAuth()
       .post("/login", this.state.credentials)
       .then(res => {
         console.log("Login.js: onLogin: sucess", res);
+        localStorage.setItem("token", res.data.token);
+        this.props.history.push("/protected");
       })
       .catch(err => console.log(err));
   };
@@ -31,30 +34,20 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <form className="ui small form" onSubmit={this.onLogin}>
-          <div className="fields">
-            <div className="six wide field">
-              <label>Username</label>
-              <input
-                type="text"
-                name="username"
-                value={this.state.credentials.username}
-                onChange={this.onInputChange}
-              />
-            </div>
-            <div className="six wide field">
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                value={this.state.credentials.password}
-                onChange={this.onInputChange}
-              />
-            </div>
-          </div>
-          <button className="ui button" type="submit">
-            Login
-          </button>
+        <form onSubmit={this.onLogin}>
+          <input
+            type="text"
+            name="username"
+            value={this.state.credentials.username}
+            onChange={this.onInputChange}
+          />
+          <input
+            type="password"
+            name="password"
+            value={this.state.credentials.password}
+            onChange={this.onInputChange}
+          />
+          <button type="submit">Login</button>
         </form>
       </div>
     );

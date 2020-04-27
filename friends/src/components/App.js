@@ -7,15 +7,11 @@ import FriendsList from "./FriendsList";
 const App = () => {
   return (
     <Router>
-      <div className="ui container">
-        <div className="ui secondary pointing menu">
-          <Link className="item" to="/login">
-            Login
-          </Link>
-          <Link className="item" to="/protected">
-            Friends List
-          </Link>
-        </div>
+      <div>
+        <nav>
+          <Link to="/login">Login</Link>
+          <Link to="/protected">Friends List</Link>
+        </nav>
         <Switch>
           <PrivateRoute exact path="/protected" component={FriendsList} />
           <Route path="/login" component={Login} />
