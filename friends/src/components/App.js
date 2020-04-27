@@ -8,12 +8,20 @@ import Logout from "./Logout";
 const App = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <Link to="/login">Login</Link>
-          <Link to="/protected">Friends List</Link>
-          <Logout />
-        </nav>
+      <div className="ui container">
+        <div className="ui top attached tabular menu">
+          <Link className="item" to="/login">
+            Login
+          </Link>
+          <Link className="item" to="/protected">
+            Friends List
+          </Link>
+          <div className="right menu">
+            <div className="item">
+              <Logout />
+            </div>
+          </div>
+        </div>
         <Switch>
           <PrivateRoute exact path="/protected" component={FriendsList} />
           <Route path="/login" component={Login} />

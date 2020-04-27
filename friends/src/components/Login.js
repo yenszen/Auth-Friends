@@ -33,21 +33,32 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onLogin}>
-          <input
-            type="text"
-            name="username"
-            value={this.state.credentials.username}
-            onChange={this.onInputChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            onChange={this.onInputChange}
-          />
-          <button type="submit">Login</button>
+      <div
+        className="ui center aligned container segment"
+        style={{ width: "50vw" }}
+      >
+        <form className="ui form" onSubmit={this.onLogin}>
+          <div className="field">
+            <label>Username</label>
+            <input
+              type="text"
+              name="username"
+              value={this.state.credentials.username}
+              onChange={this.onInputChange}
+            />
+          </div>
+          <div className="field">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              value={this.state.credentials.password}
+              onChange={this.onInputChange}
+            />
+          </div>
+          <button className="ui purple button" type="submit">
+            Login
+          </button>
         </form>
       </div>
     );

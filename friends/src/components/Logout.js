@@ -15,11 +15,14 @@ class Logout extends React.Component {
     const { navigate } = this.state;
 
     if (navigate) {
-      debugger;
       return <Redirect to="/" push />;
     }
 
-    return <button onClick={this.onLogout}>Log Out</button>;
+    return (
+      <button className="ui purple button" onClick={this.onLogout}>
+        Log Out
+      </button>
+    );
   }
 }
 
