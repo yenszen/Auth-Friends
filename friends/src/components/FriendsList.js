@@ -29,6 +29,17 @@ const FriendsList = () => {
       .then(res => {
         console.log("FriendsList.js: onFormSubmit: success", res);
         setFriends([...friends, res.data[res.data.length - 1]]);
+        setNewFriend({ name: "", age: 0, email: "" });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const onDelete = id => {
+    axiosWithAuth()
+      .delete(`/friends/${id}`)
+      .then(res => {
+        console.log(res);
+        setFriends(res.data);
       })
       .catch(err => console.log(err));
   };
@@ -63,6 +74,10 @@ const FriendsList = () => {
             <h4>{friend.name}</h4>
             <p>{friend.age}</p>
             <p>{friend.email}</p>
+            <div>
+              <button>Edit</button>
+              <button onClick={() => onDelete(friend.id)}>Delete</button>
+            </div>
           </React.Fragment>
         );
       })}

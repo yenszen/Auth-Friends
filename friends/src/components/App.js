@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Login from "./Login";
 import FriendsList from "./FriendsList";
 import PrivateRoute from "./PrivateRoute";
+// import UpdateForm from "./UpdateForm";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         </nav>
         <Route exact path="/" component={Login} />
         <PrivateRoute path="/protected" component={FriendsList} />
+        {/* <Route path="/update-form/:id" component={UpdateForm} /> */}
       </div>
     </Router>
   );
