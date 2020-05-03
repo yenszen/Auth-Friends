@@ -1,12 +1,12 @@
 import React from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 class FriendsList extends React.Component {
   state = {
     friends: [],
     newFriend: {
-      id: null,
+      // id: null,
       name: "",
       age: 0,
       email: ""
@@ -33,7 +33,7 @@ class FriendsList extends React.Component {
     this.setState({
       newFriend: {
         ...this.state.newFriend,
-        id: uuidv4(),
+        // id: uuidv4(),
         [e.target.name]: e.target.value
       }
     });
