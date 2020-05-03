@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import Edit from "./Edit";
+
+const initialFriend = {
+  name: "",
+  age: 0,
+  email: ""
+};
 
 const FriendsList = () => {
   const [friends, setFriends] = useState([]);
   const [newFriend, setNewFriend] = useState({ name: "", age: 0, email: "" });
+
+  const [editing, setEditing] = useState(false);
+  const [friendToEdit, setFriendToEdit] = useState(initialFriend);
 
   useEffect(() => {
     axiosWithAuth()
@@ -44,6 +54,12 @@ const FriendsList = () => {
       .catch(err => console.log(err));
   };
 
+  const onEditClick = editId => {
+    const selectedFriend = friends.find(friend => friend.id === editId);
+    setEditing(true);
+    setFriendToEdit(selectedFriend);
+  };
+
   return (
     <div>
       <form onSubmit={onFormSubmit}>
@@ -68,6 +84,15 @@ const FriendsList = () => {
         <button type="submit">Add Friend</button>
       </form>
 
+      <Edit
+        setFriends={setFriends}
+        editing={editing}
+        setEditing={setEditing}
+        friendToEdit={friendToEdit}
+        setFriendToEdit={setFriendToEdit}
+        initialFriend={initialFriend}
+      />
+
       {friends.map(friend => {
         return (
           <React.Fragment>
@@ -75,7 +100,7 @@ const FriendsList = () => {
             <p>{friend.age}</p>
             <p>{friend.email}</p>
             <div>
-              <button>Edit</button>
+              <button onClick={() => onEditClick(friend.id)}>Edit</button>
               <button onClick={() => onDelete(friend.id)}>Delete</button>
             </div>
           </React.Fragment>
